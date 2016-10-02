@@ -30,6 +30,16 @@ describe('component: task', function () {
         expect(ctrl.taskList[1]).toEqual('learn mama');
     });
 
+    it('should reset new task to empty', function () {
+        var ctrl = $componentController('task', null);
+        $httpBackend.flush();
+        
+        ctrl.newTask = 'wawa';
+        ctrl.reset();
+
+        expect(ctrl.newTask).toEqual('');
+    });
+
     it('should add task to list', function () {
         var ctrl = $componentController('task', null);
         $httpBackend.flush();
