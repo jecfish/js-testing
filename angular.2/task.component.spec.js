@@ -10,10 +10,10 @@ describe('component: task', function () {
     beforeEach(inject(function ($injector) {
         // Set up the mock http service responses
         $httpBackend = $injector.get('$httpBackend');
-        
+
         // backend definition common for all tests
         tasksHandler = $httpBackend.when('GET', 'tasks.json')
-            .respond(['learn papa', 'learn mama']);
+            .respond(['learn papa', 'learn mama', 'learn didi']);
     }));
 
     afterEach(function () {
@@ -25,17 +25,19 @@ describe('component: task', function () {
         var ctrl = $componentController('task', null);
         $httpBackend.flush();
 
+        expect(ctrl.taskList.length).toEqual(3);
         expect(ctrl.taskList[0]).toEqual('learn papa');
+        expect(ctrl.taskList[1]).toEqual('learn mama');
     });
 
     it('should add task to list', function () {
-        var ctrl = $componentController('task', null);    
+        var ctrl = $componentController('task', null);
         $httpBackend.flush();
 
         spyOn(ctrl, 'reset');
-        ctrl.addTask('abc');
+        ctrl.addTask('efg');
 
-        expect(ctrl.taskList[ctrl.taskList.length - 1]).toEqual('abc');
+        expect(ctrl.taskList[ctrl.taskList.length - 1]).toEqual('efg');
         expect(ctrl.reset).toHaveBeenCalledTimes(1);
 
     });

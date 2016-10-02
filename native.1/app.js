@@ -1,12 +1,15 @@
 function addTask() {
-    var input = document.getElementById('task'); 
-    var list = document.getElementById('task-list');
+    // get input and list node
+    var inputNode = document.getElementById('task'); 
+    var listNode = document.getElementById('task-list');
 
-    var node = document.createElement('li'); // <li></li>
-    var textnode = document.createTextNode(input.value);
+    // create task node
+    var taskNode = document.createElement('li');
+    taskNode.innerText = inputNode.value;
 
-    node.appendChild(textnode);
+    // add task node to list node
+    listNode.appendChild(taskNode);
 
-    list.appendChild(node); // <li>value</li>
-    input.value = '';
+    // reset input value
+    inputNode.value = '';
 }

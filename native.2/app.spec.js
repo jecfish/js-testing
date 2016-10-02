@@ -1,49 +1,64 @@
 var expect = chai.expect;
 
 describe("Task", function () {
-    it("should create a list item", function () {
-        var node = createItem('abc');
-        expect(node.textContent).to.equal('abc');
+    it("should create a task node", function () {
+        // arrange
+        var expectedValue = 'abc';
+
+        // action
+        var node = createTaskNode(expectedValue);
+
+        // assert
+        expect(node.textContent).to.equal(expectedValue);
     });
 
-    it("should add item to list", function () {
+    it("should add task node to list node", function () {
+        // arrange
+        var expectedValue = 'wawa';
         var listNode = document.createElement('ul');
-        add(listNode, 'xyz');
+        var taskNode = document.createElement('li');
+        taskNode.innerText = expectedValue;
+
+        // action
+        var output = addTaskToList(listNode, taskNode);
+
+        // assert
+        expect(output.innerText).to.equal(expectedValue);
         expect(listNode.children.length).to.equal(1);
     });
 
-    it("should add item to list", function () {
-        var listNode = document.createElement('ul');
-        add(listNode, 'xyz');
-        expect(listNode.children.length).to.equal(1);
+    it("should reset node value", function () {
+        // arrange
+        var expectedValue = 'xyz';
+        var inputNode = document.createElement('input');
+        inputNode.value = expectedValue;
+
+        // action
+        reset(inputNode);
+
+        // assert
+        expect(inputNode.value).to.equal('');
     });
 
-    it("should reset value", function () {
-        var node = document.createElement('input');
-        node.setAttribute('type', 'text');
-        node.setAttribute('value', 'xyz');
-
-        reset(node);
-        expect(node.value).to.equal('');
-    });
-
-    it("should add task", function () {
-        var node = document.createElement('input');
-        node.setAttribute('type', 'text');
-        node.setAttribute('value', 'xyz');
-
+    it("should add new task", function () {
+        // arrange: setup
         var listNode = document.createElement('ul');
+        var inputNode = document.createElement('input');
 
+        // arrange: stub getElementById
         sinon.stub(document, 'getElementById');
-        document.getElementById.withArgs('task').returns(node);
+        document.getElementById.withArgs('task').returns(inputNode);
         document.getElementById.withArgs('task-list').returns(listNode);
 
-        reset = sinon.spy(reset);
-        add = sinon.spy(add);
+        // arrange: spy function
+        var reset = sinon.spy(window, 'reset');
+        var addTaskToList = sinon.spy(window, 'addTaskToList');
         
+        // action
         addTask();
 
-        expect(add.calledOnce).to.equal(true);
+        // assert
+        expect(addTaskToList.calledOnce).to.equal(true);
         expect(reset.calledOnce).to.equal(true);
     });
 });

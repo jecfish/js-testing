@@ -1,28 +1,27 @@
 // level 2
-function createItem(task) {
-    var node = document.createElement('li');
-    var textnode = document.createTextNode(task);
-    node.appendChild(textnode);
+function createTaskNode(task) {
+    var taskNode = document.createElement('li');
+    taskNode.innerText = task;
 
-    return node;
+    return taskNode;
 }
 
-function add(el, value) {
-    var template = createItem(value);
-
-    el.appendChild(template);
+function addTaskToList(listNode, taskNode) {
+    return listNode.appendChild(taskNode);
 }
 
-function reset(el) {
-    el.value = '';
+function reset(inputNode) {
+    inputNode.value = '';
 }
 
 function addTask() {
-    var input = document.getElementById('task');
-    var list = document.getElementById('task-list');
+    var inputNode = document.getElementById('task');
+    var listNode = document.getElementById('task-list');
 
-    add(list, input.value);
-    reset(input);
+    var taskNode = createTaskNode(inputNode.value);
+
+    addTaskToList(listNode, taskNode);
+    reset(inputNode);
 }
 
 
