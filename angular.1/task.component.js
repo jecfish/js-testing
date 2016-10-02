@@ -18,13 +18,15 @@ function TaskController() {
 // component
 myApp.component('task', {
     template: ' \
-        <input type="text" ng-model="$ctrl.newTask"> \
-        <button ng-click="$ctrl.addTask($ctrl.newTask)">Add</button> \
-        <ul> \
-           <li ng-repeat="task in $ctrl.taskList track by $index"> \
-               {{ task }} \
-           </li> \
-        </ul> \
+        <div> \
+            <input type="text" ng-model="$ctrl.newTask"> \
+            <button ng-click="$ctrl.addTask($ctrl.newTask)">Add</button> \
+            <ul> \
+            <li ng-repeat="task in $ctrl.taskList track by $index"> \
+                {{ task }} \
+            </li> \
+            </ul> \
+        </div> \
     ',
     controller: TaskController
 });
