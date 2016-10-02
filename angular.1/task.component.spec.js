@@ -10,7 +10,7 @@ describe('component: task', function () {
     it('should have a list of task', function () {
         var ctrl = $componentController('task', null);
 
-        expect(ctrl.taskList[0]).toEqual('learn abc');
+        expect(ctrl.taskList[0]).toEqual('attend gdg devfest');
     });
 
     it('should reset new task to empty', function () {

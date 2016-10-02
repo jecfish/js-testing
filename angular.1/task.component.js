@@ -3,7 +3,7 @@ function TaskController() {
     var ctrl = this;
 
     ctrl.newTask = '';
-    ctrl.taskList = ['learn abc', 'learn xyz'];
+    ctrl.taskList = ['attend gdg devfest', 'eat cendol'];
 
     ctrl.addTask = function (task) {
         ctrl.taskList.push(task);
