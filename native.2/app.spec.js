@@ -29,15 +29,16 @@ describe("Task", function () {
 
     it("should reset node value", function () {
         // arrange
-        var expectedValue = 'xyz';
+        var inputValue = 'xyz';
+        var expectedValue = '';
         var inputNode = document.createElement('input');
-        inputNode.value = expectedValue;
+        inputNode.value = inputValue;
 
         // action
         reset(inputNode);
 
         // assert
-        expect(inputNode.value).to.equal('');
+        expect(inputNode.value).to.equal(expectedValue);
     });
 
     it("should add new task", function () {
